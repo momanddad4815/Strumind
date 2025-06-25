@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom styles for 3D viewer */
+.model-viewer {
+  position: relative;
+  overflow: hidden;
+}
+
+.model-viewer canvas {
+  outline: none;
+}
+
+/* Loading spinner */
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Structural engineering specific styles */
+.node-marker {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #ff6b6b;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.element-line {
+  stroke: #4ecdc4;
+  stroke-width: 2;
+  fill: none;
+}
+
+.element-line.selected {
+  stroke: #feca57;
+  stroke-width: 3;
+}
+
+.support-marker {
+  fill: #26de81;
+  stroke: #20bf6b;
+  stroke-width: 1;
+}
+
+/* Analysis results visualization */
+.deformed-shape {
+  stroke: #ff9ff3;
+  stroke-width: 2;
+  fill: none;
+  opacity: 0.8;
+}
+
+.moment-diagram {
+  fill: rgba(255, 107, 107, 0.6);
+  stroke: #ff6b6b;
+  stroke-width: 1;
+}
+
+.shear-diagram {
+  fill: rgba(52, 152, 219, 0.6);
+  stroke: #3498db;
+  stroke-width: 1;
+}
+
+/* Material and section library styles */
+.material-card {
+  @apply border rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer;
+}
+
+.material-card.selected {
+  @apply border-primary bg-primary/5;
+}
+
+.section-preview {
+  width: 100%;
+  height: 100px;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Analysis progress and results */
+.analysis-progress {
+  @apply bg-secondary rounded-full overflow-hidden;
+}
+
+.analysis-progress-bar {
+  @apply bg-primary h-2 transition-all duration-300 ease-out;
+}
+
+.result-table {
+  @apply w-full border-collapse;
+}
+
+.result-table th,
+.result-table td {
+  @apply border border-border p-2 text-left;
+}
+
+.result-table th {
+  @apply bg-muted font-medium;
+}
+
+/* Property forms */
+.property-form {
+  @apply space-y-4;
+}
+
+.property-form .form-group {
+  @apply space-y-2;
+}
+
+.property-form label {
+  @apply text-sm font-medium text-foreground;
+}
+
+.property-form input,
+.property-form select,
+.property-form textarea {
+  @apply w-full px-3 py-2 border border-input bg-background rounded-md text-sm;
+}
+
+.property-form input:focus,
+.property-form select:focus,
+.property-form textarea:focus {
+  @apply outline-none ring-2 ring-ring;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+/* Print styles for reports */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-break {
+    page-break-before: always;
+  }
+}
