@@ -317,4 +317,27 @@ export const analysisAPI = {
   }
 }
 
+// NLP API for natural language processing
+export interface NLPAction {
+  action: string
+  params: Record<string, any>
+}
+
+export interface NLPResponse {
+  actions: NLPAction[]
+  message: string
+  success: boolean
+}
+
+export const nlpAPI = {
+  async processPrompt(projectId: number, modelId: number, prompt: string): Promise<NLPResponse> {
+    const response = await api.post('/api/nlp/process', {
+      prompt,
+      project_id: projectId,
+      model_id: modelId
+    })
+    return response.data
+  }
+}
+
 export default api

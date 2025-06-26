@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import ProtectedRoute from '@/components/auth/ProtectedRoute'
 import StructuralViewer from '@/components/viewer/StructuralViewer'
 import { projectsAPI, modelsAPI, nodesAPI, elementsAPI, Project, StructuralModel } from '@/lib/api'
+import NLPPrompt from '@/components/nlp/NLPPrompt'
 import { Building2, ArrowLeft, Plus, Calculator, FileText, Download, Settings } from 'lucide-react'
 
 export default function ModelDetailPage({ 
@@ -520,6 +521,15 @@ export default function ModelDetailPage({
               )}
             </div>
           </div>
+        )}
+
+        {/* NLP Prompt Component */}
+        {!loading && model && (
+          <NLPPrompt 
+            projectId={projectId} 
+            modelId={modelId} 
+            onModelUpdate={fetchProjectAndModel} 
+          />
         )}
       </div>
     </ProtectedRoute>
