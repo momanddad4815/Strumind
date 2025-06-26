@@ -131,6 +131,38 @@ export const projectsAPI = {
 }
 
 // Structural Models API
+export interface Node {
+  id: number
+  label: string
+  position: [number, number, number]
+  boundary_conditions?: {
+    fx: boolean
+    fy: boolean
+    fz: boolean
+    mx: boolean
+    my: boolean
+    mz: boolean
+  }
+}
+
+export interface Element {
+  id: number
+  label: string
+  type: string
+  start_node: number
+  end_node: number
+  material_id?: number
+  section_id?: number
+  material_type?: string
+}
+
+export interface Material {
+  id: number
+  name: string
+  type: string
+  properties: Record<string, number>
+}
+
 export interface StructuralModel {
   id: number
   project_id: number
@@ -139,9 +171,10 @@ export interface StructuralModel {
   units: string
   created_at: string
   updated_at: string
-  nodes: any[]
-  elements: any[]
+  nodes: Node[]
+  elements: Element[]
   materials: any[]
+  analysis_results?: any
 }
 
 export const modelsAPI = {
@@ -167,6 +200,100 @@ export const modelsAPI = {
 
   async deleteModel(projectId: number, modelId: number): Promise<void> {
     await api.delete(`/api/projects/${projectId}/models/${modelId}`)
+  }
+}
+
+// Nodes API
+export const nodesAPI = {
+  async getNodes(projectId: number, modelId: number): Promise<Node[]> {
+    const response = await api.get(`/api/projects/${projectId}/models/${modelId}/nodes`)
+    return response.data
+  },
+
+  async createNode(
+    projectId: number, 
+    modelId: number, 
+    data: { 
+      label: string; 
+      position: [number, number, number]; 
+      boundary_conditions?: Record<string, boolean> 
+    }
+  ): Promise<Node> {
+    const response = await api.post(`/api/projects/${projectId}/models/${modelId}/nodes`, data)
+    return response.data
+  },
+
+  async getNode(projectId: number, modelId: number, nodeId: number): Promise<Node> {
+    const response = await api.get(`/api/projects/${projectId}/models/${modelId}/nodes/${nodeId}`)
+    return response.data
+  },
+
+  async updateNode(
+    projectId: number, 
+    modelId: number, 
+    nodeId: number, 
+    data: { 
+      label?: string; 
+      position?: [number, number, number]; 
+      boundary_conditions?: Record<string, boolean> 
+    }
+  ): Promise<Node> {
+    const response = await api.put(`/api/projects/${projectId}/models/${modelId}/nodes/${nodeId}`, data)
+    return response.data
+  },
+
+  async deleteNode(projectId: number, modelId: number, nodeId: number): Promise<void> {
+    await api.delete(`/api/projects/${projectId}/models/${modelId}/nodes/${nodeId}`)
+  }
+}
+
+// Elements API
+export const elementsAPI = {
+  async getElements(projectId: number, modelId: number): Promise<Element[]> {
+    const response = await api.get(`/api/projects/${projectId}/models/${modelId}/elements`)
+    return response.data
+  },
+
+  async createElement(
+    projectId: number, 
+    modelId: number, 
+    data: { 
+      label: string; 
+      type: string;
+      start_node: number;
+      end_node: number;
+      material_id?: number;
+      section_id?: number;
+    }
+  ): Promise<Element> {
+    const response = await api.post(`/api/projects/${projectId}/models/${modelId}/elements`, data)
+    return response.data
+  },
+
+  async getElement(projectId: number, modelId: number, elementId: number): Promise<Element> {
+    const response = await api.get(`/api/projects/${projectId}/models/${modelId}/elements/${elementId}`)
+    return response.data
+  },
+
+  async updateElement(
+    projectId: number, 
+    modelId: number, 
+    elementId: number, 
+    data: { 
+      label?: string; 
+      type?: string;
+      start_node?: number;
+      end_node?: number;
+      material_id?: number;
+      section_id?: number;
+    }
+  ): Promise<Element> {
+    const response = await api.put(`/api/projects/${projectId}/models/${modelId}/elements/${elementId}`, data)
+    return response.data
+  },
+
+  async deleteElement(projectId: number, modelId: number, elementId: number): Promise<void> {
+    await api.delete(`/api/projects/${projectId}/models/${modelId}/elements/${elementId}`)
   }
 }
 

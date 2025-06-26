@@ -13,6 +13,8 @@ from api.analysis import router as analysis_router
 from api.bim import router as bim_router
 from api.design import router as design_router
 from api.detailing import router as detailing_router
+from api.nodes import router as nodes_router
+from api.elements import router as elements_router
 
 app = FastAPI(
     title="StruMind API",
@@ -39,6 +41,8 @@ app.include_router(analysis_router)
 app.include_router(bim_router)
 app.include_router(design_router)
 app.include_router(detailing_router)
+app.include_router(nodes_router)
+app.include_router(elements_router)
 
 @app.get("/")
 def read_root():
