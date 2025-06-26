@@ -1,6 +1,6 @@
 from typing import List, Optional, Dict, Tuple
-from backend.core.geometry import Point3D, GeometryUtils
-from backend.db.models import Node, BoundaryCondition, SupportType
+from core.geometry import Point3D, GeometryUtils
+from db.models import Node, BoundaryCondition, SupportType, Element
 from sqlalchemy.orm import Session
 
 

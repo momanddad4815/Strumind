@@ -2,11 +2,11 @@ import os
 import json
 from typing import Dict, List, Optional, Any
 from sqlalchemy.orm import Session
-from backend.core.model import StructuralModel
-from backend.bim.ifc_exporter import IFCExporter
-from backend.bim.gltf_exporter import GLTFExporter
-from backend.bim.dxf_exporter import DXFExporter
-from backend.db.models import BIMData
+from core.model import StructuralModel
+from bim.ifc_exporter import IFCExporter
+from bim.gltf_exporter import GLTFExporter
+from bim.dxf_exporter import DXFExporter
+from db.models import BIMData
 import logging
 from datetime import datetime
 
@@ -91,7 +91,7 @@ class BIMEngine:
             # Get analysis results if requested
             analysis_data = None
             if include_analysis_results:
-                from backend.db.models import AnalysisResult
+                from db.models import AnalysisResult
                 latest_analysis = self.db.query(AnalysisResult).filter(
                     AnalysisResult.model_id == self.model.model.id,
                     AnalysisResult.status == "completed"
@@ -285,7 +285,7 @@ class BIMEngine:
                 }
             
             # Get latest analysis results
-            from backend.db.models import AnalysisResult
+            from db.models import AnalysisResult
             latest_analysis = self.db.query(AnalysisResult).filter(
                 AnalysisResult.model_id == self.model.model.id,
                 AnalysisResult.status == "completed"

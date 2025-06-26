@@ -1,6 +1,6 @@
 from typing import List, Optional, Dict, Any, Tuple
 import math
-from backend.db.models import Load, LoadType, LoadCombination, Element, Node
+from db.models import Load, LoadType, LoadCombination, Element, Node
 from sqlalchemy.orm import Session
 
 

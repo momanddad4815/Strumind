@@ -1,10 +1,10 @@
 from typing import List, Optional, Dict, Any, Tuple
-from backend.core.node import NodeManager
-from backend.core.element import ElementManager
-from backend.core.material import MaterialManager
-from backend.core.section import SectionManager
-from backend.core.load import LoadManager
-from backend.db.models import Model, Project
+from core.node import NodeManager
+from core.element import ElementManager
+from core.material import MaterialManager
+from core.section import SectionManager
+from core.load import LoadManager
+from db.models import Model, Project
 from sqlalchemy.orm import Session
 
 

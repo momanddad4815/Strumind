@@ -1,7 +1,7 @@
 import math
 from typing import Dict, List, Tuple, Optional, Any
 import numpy as np
-from backend.db.models import Element, Material, Section, ReinforcementDetail
+from db.models import Element, Material, Section, ReinforcementDetail
 
 
 class ReinforcementDetailer:

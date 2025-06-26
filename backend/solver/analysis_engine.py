@@ -1,11 +1,11 @@
 import numpy as np
 from typing import Dict, List, Optional, Any
 from sqlalchemy.orm import Session
-from backend.core.model import StructuralModel
-from backend.solver.matrix_assembler import MatrixAssembler
-from backend.solver.linear_solver import LinearSolver
-from backend.solver.modal_analyzer import ModalAnalyzer
-from backend.db.models import AnalysisResult, LoadCombination
+from core.model import StructuralModel
+from solver.matrix_assembler import MatrixAssembler
+from solver.linear_solver import LinearSolver
+from solver.modal_analyzer import ModalAnalyzer
+from db.models import AnalysisResult, LoadCombination
 import json
 import logging
 from datetime import datetime

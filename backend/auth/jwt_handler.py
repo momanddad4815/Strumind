@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from typing import Optional
 from jose import JWTError, jwt
-from backend.config import settings
+from config import settings
 
 
 class JWTHandler:

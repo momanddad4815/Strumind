@@ -1,6 +1,6 @@
 from typing import List, Optional, Dict, Any
 import math
-from backend.db.models import Section, SectionType
+from db.models import Section, SectionType
 from sqlalchemy.orm import Session
 
 
@@ -483,7 +483,7 @@ class SectionManager:
             return False
         
         # Check if section is used by elements
-        from backend.db.models import Element
+        from db.models import Element
         elements_count = self.db.query(Element).filter(Element.section_id == section_id).count()
         
         if elements_count > 0:

@@ -1,7 +1,7 @@
 import math
 from typing import Dict, List, Tuple, Optional
 import numpy as np
-from backend.db.models import Element, Material, Section, DesignResult
+from db.models import Element, Material, Section, DesignResult
 
 
 class SteelDesigner:

@@ -1,9 +1,9 @@
 from typing import Dict, List, Optional, Any
 from sqlalchemy.orm import Session
-from backend.core.model import StructuralModel
-from backend.design.rc_design import RCDesigner
-from backend.design.steel_design import SteelDesigner
-from backend.db.models import DesignResult, Element, Material, Section
+from core.model import StructuralModel
+from design.rc_design import RCDesigner
+from design.steel_design import SteelDesigner
+from db.models import DesignResult, Element, Material, Section
 import logging
 from datetime import datetime
 
@@ -43,7 +43,7 @@ class DesignEngine:
                 return {"status": "failed", "error": "No concrete elements found for design"}
             
             # Get latest analysis results
-            from backend.db.models import AnalysisResult
+            from db.models import AnalysisResult
             latest_analysis = self.db.query(AnalysisResult).filter(
                 AnalysisResult.model_id == self.model.model.id,
                 AnalysisResult.analysis_type == "linear_static",
@@ -181,7 +181,7 @@ class DesignEngine:
                 return {"status": "failed", "error": "No steel elements found for design"}
             
             # Get latest analysis results
-            from backend.db.models import AnalysisResult
+            from db.models import AnalysisResult
             latest_analysis = self.db.query(AnalysisResult).filter(
                 AnalysisResult.model_id == self.model.model.id,
                 AnalysisResult.analysis_type == "linear_static",

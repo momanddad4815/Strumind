@@ -2,11 +2,11 @@ from typing import Dict, Any
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
-from backend.db.database import get_db
-from backend.db.models import Model, Project, User
-from backend.auth.auth_handler import AuthHandler
-from backend.core.model import StructuralModel
-from backend.bim.bim_engine import BIMEngine
+from db.database import get_db
+from db.models import Model, Project, User
+from api.auth import get_current_user
+from core.model import StructuralModel
+from bim.bim_engine import BIMEngine
 
 router = APIRouter(prefix="/bim", tags=["bim"])
 
@@ -29,9 +29,7 @@ class DXFExportRequest(BaseModel):
     include_annotations: bool = True
 
 
-def get_current_user(db: Session = Depends(get_db)) -> User:
-    auth_handler = AuthHandler(db)
-    return auth_handler.get_current_active_user()
+# Using the get_current_user from auth.py
 
 
 def verify_model_access(model_id: int, db: Session, current_user: User) -> Model:

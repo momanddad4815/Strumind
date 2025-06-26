@@ -1,8 +1,8 @@
 import numpy as np
 from typing import List, Dict, Tuple, Optional
 from scipy.sparse import csc_matrix, lil_matrix
-from backend.core.geometry import Point3D, GeometryUtils
-from backend.db.models import Node, Element, Material, Section, BoundaryCondition
+from core.geometry import Point3D, GeometryUtils
+from db.models import Node, Element, Material, Section, BoundaryCondition
 
 
 class MatrixAssembler:

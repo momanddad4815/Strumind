@@ -1,5 +1,5 @@
 from typing import List, Optional, Dict, Any
-from backend.db.models import Material, MaterialType
+from db.models import Material, MaterialType
 from sqlalchemy.orm import Session
 
 
@@ -201,7 +201,7 @@ class MaterialManager:
             return False
         
         # Check if material is used by elements
-        from backend.db.models import Element
+        from db.models import Element
         elements_count = self.db.query(Element).filter(Element.material_id == material_id).count()
         
         if elements_count > 0:

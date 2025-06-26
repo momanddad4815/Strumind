@@ -1,8 +1,8 @@
 from typing import Dict, List, Optional, Any
 from sqlalchemy.orm import Session
-from backend.core.model import StructuralModel
-from backend.detailing.reinforcement_detailing import ReinforcementDetailer
-from backend.db.models import ReinforcementDetail, ConnectionDetail, DesignResult
+from core.model import StructuralModel
+from detailing.reinforcement_detailing import ReinforcementDetailer
+from db.models import ReinforcementDetail, ConnectionDetail, DesignResult
 import logging
 from datetime import datetime
 

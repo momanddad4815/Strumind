@@ -2,9 +2,9 @@ from typing import Optional
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from backend.db.models import User
-from backend.auth.jwt_handler import JWTHandler
-from backend.auth.password_handler import PasswordHandler
+from db.models import User
+from auth.jwt_handler import JWTHandler
+from auth.password_handler import PasswordHandler
 
 security = HTTPBearer()
 

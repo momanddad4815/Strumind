@@ -176,8 +176,8 @@ class LinearSolver:
                                          nodes: Dict, materials: Dict, sections: Dict) -> Dict:
         """Calculate internal forces for a single element"""
         
-        from backend.solver.matrix_assembler import MatrixAssembler
-        from backend.core.geometry import Point3D, GeometryUtils
+        from solver.matrix_assembler import MatrixAssembler
+        from core.geometry import Point3D, GeometryUtils
         
         # Get element properties
         material = materials[element.material_id]

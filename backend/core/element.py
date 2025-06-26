@@ -1,7 +1,7 @@
 from typing import List, Optional, Dict, Any
 import numpy as np
-from backend.core.geometry import Point3D, GeometryUtils
-from backend.db.models import Element, ElementType, Node, Material, Section
+from core.geometry import Point3D, GeometryUtils
+from db.models import Element, ElementType, Node, Material, Section
 from sqlalchemy.orm import Session
 
 
